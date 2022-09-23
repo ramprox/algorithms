@@ -1,7 +1,7 @@
-package ru.ramprox.sorting.util;
+package ru.ramprox.algorithms.sorting.util;
 
-import ru.ramprox.sorting.model.Brand;
-import ru.ramprox.sorting.model.Notebook;
+import ru.ramprox.algorithms.sorting.model.Brand;
+import ru.ramprox.algorithms.sorting.model.Notebook;
 
 import java.util.Random;
 

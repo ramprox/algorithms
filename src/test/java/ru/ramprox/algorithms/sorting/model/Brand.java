@@ -1,4 +1,4 @@
-package ru.ramprox.sorting.model;
+package ru.ramprox.algorithms.sorting.model;
 
 public enum Brand {
     LENUVO,

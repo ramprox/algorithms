@@ -1,25 +1,29 @@
-package ru.ramprox.sorting;
+package ru.ramprox.algorithms.sorting;
 
-import ru.ramprox.sorting.model.Notebook;
-import ru.ramprox.sorting.model.SortAlgorithm;
-import ru.ramprox.sorting.util.NotebookComparator;
-import ru.ramprox.sorting.util.NotebookGenerator;
-import ru.ramprox.sorting.util.SortAlgorithms;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import ru.ramprox.algorithms.sorting.model.Notebook;
+import ru.ramprox.algorithms.sorting.model.SortAlgorithm;
+import ru.ramprox.algorithms.sorting.util.NotebookComparator;
+import ru.ramprox.algorithms.sorting.util.NotebookGenerator;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import static ru.ramprox.sorting.model.SortAlgorithm.create;
+import static ru.ramprox.algorithms.sorting.model.SortAlgorithm.create;
 
-public class Main {
-    public static void main(String[] args) {
+@DisplayName("Unit тесты алгоритмов сортировок")
+public class GenericAlgorithmsTest {
+
+    @Test
+    public void checkAlgorithms() {
         NotebookGenerator notebookGenerator = new NotebookGenerator();
         Comparator<Notebook> comparator = NotebookComparator.defaultComparator();
 
         List<SortAlgorithm<Notebook>> sortAlgorithms = List.of(
-                create(SortAlgorithms::insertionSort, "Сортировка методом вставки"),
-                create(SortAlgorithms::selectionSort, "Сортировка методом выбора"),
+                create(GenericAlgorithms::insertionSort, "Сортировка методом вставки"),
+                create(GenericAlgorithms::selectionSort, "Сортировка методом выбора"),
                 create(Arrays::sort, "Стандартная Java сортировка")
         );
 
@@ -27,7 +31,6 @@ public class Main {
 
         sortAlgorithms.forEach(sortAlgorithm ->
                 sorting(sortAlgorithm, notebookGenerator.generate(notebookCount), comparator));
-
     }
 
     private static <T> void sorting(SortAlgorithm<T> sortAlgorithm, T[] array, Comparator<T> comparator) {

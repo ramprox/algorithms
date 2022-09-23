@@ -1,8 +1,8 @@
-package ru.ramprox.sorting.util;
+package ru.ramprox.algorithms.sorting;
 
 import java.util.Comparator;
 
-public class SortAlgorithms {
+public class GenericAlgorithms {
 
     public static <T> void selectionSort(T[] array, Comparator<T> comparator) {
         for(int i = 0; i < array.length - 1; i++) {

@@ -1,6 +1,6 @@
-package ru.ramprox.deque;
+package ru.ramprox.datastructures.deque;
 
-import ru.ramprox.queue.Queue;
+import ru.ramprox.datastructures.queue.Queue;
 
 public interface Deque<T> extends Queue<T> {
 

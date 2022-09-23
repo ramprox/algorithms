@@ -1,4 +1,4 @@
-package ru.ramprox.queue;
+package ru.ramprox.datastructures.queue;
 
 public interface Queue<T> {
 

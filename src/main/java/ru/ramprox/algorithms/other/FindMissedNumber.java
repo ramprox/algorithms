@@ -1,4 +1,4 @@
-package ru.ramprox.util;
+package ru.ramprox.algorithms.other;
 
 public class FindMissedNumber {
 

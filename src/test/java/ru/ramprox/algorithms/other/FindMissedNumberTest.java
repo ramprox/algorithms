@@ -1,4 +1,4 @@
-package ru.ramprox.util;
+package ru.ramprox.algorithms.other;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
