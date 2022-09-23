@@ -18,7 +18,7 @@ public interface Deque<T> extends Queue<T> {
 
     @Override
     default boolean add(T item) {
-        return addFirst(item);
+        return addLast(item);
     }
 
     @Override
