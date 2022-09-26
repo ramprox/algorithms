@@ -3,6 +3,7 @@ package ru.ramprox.datastructures.list;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -128,8 +129,55 @@ public class LinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(3));
     }
 
+    @DisplayName("Проверка итератора для пустого списка")
+    @Test
+    public void emptyListIteratorTest() {
+        List<Integer> list = emptyLinkedList();
+        Iterator<Integer> iterator = list.iterator();
+        assertThat(iterator.hasNext()).isEqualTo(false);
+        assertThrows(NoSuchElementException.class, iterator::next);
+        assertThrows(NoSuchElementException.class, iterator::next);
+    }
+
+    @DisplayName("Проверка итератора для списка, имеющего элементы")
+    @Test
+    public void iteratorTest() {
+        Integer[] expectedItems = new Integer[] { 1, 2, 3, 4, 5, 6 };
+        List<Integer> list = createFilledList(expectedItems);
+        Iterator<Integer> iterator = list.iterator();
+        int counter = 0;
+        while(iterator.hasNext()) {
+            Integer item = iterator.next();
+            assertThat(item).isEqualTo(expectedItems[counter]);
+            counter++;
+        }
+        assertThat(counter).isEqualTo(expectedItems.length);
+        assertThrows(NoSuchElementException.class, iterator::next);
+        assertThrows(NoSuchElementException.class, iterator::next);
+    }
+
+    @DisplayName("Проверка цикла в стиле foreach")
+    @Test
+    public void foreachTest() {
+        Integer[] expectedItems = new Integer[] { 1, 2, 3, 4, 5, 6 };
+        List<Integer> list = createFilledList(expectedItems);
+        int counter = 0;
+        for(Integer item : list) {
+            assertThat(item).isEqualTo(expectedItems[counter++]);
+        }
+        assertThat(counter).isEqualTo(expectedItems.length);
+    }
+
     private List<Integer> emptyLinkedList() {
         return new LinkedList<>();
+    }
+
+    private List<Integer> createFilledList(Integer... items) {
+        List<Integer> list = emptyLinkedList();
+        for(Integer item : items) {
+            list.addLast(item);
+        }
+        return list;
     }
 
 }
