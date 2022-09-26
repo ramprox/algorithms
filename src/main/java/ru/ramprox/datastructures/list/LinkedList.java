@@ -1,5 +1,6 @@
 package ru.ramprox.datastructures.list;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements List<T> {
@@ -62,6 +63,11 @@ public class LinkedList<T> implements List<T> {
         Node<T> prevNode = getNode(index - 1);
         checkIsNextNull(prevNode, index);
         prevNode.next = prevNode.next.next;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<>(head);
     }
 
     @Override
@@ -131,6 +137,30 @@ public class LinkedList<T> implements List<T> {
             this.next = next;
         }
 
+    }
+
+    private static class LinkedListIterator<T> implements Iterator<T> {
+
+        private Node<T> current;
+
+        public LinkedListIterator(Node<T> current) {
+            this.current = current;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if(current == null) {
+                throw new NoSuchElementException("");
+            }
+            T data = current.data;
+            current = current.next;
+            return data;
+        }
     }
 
 }

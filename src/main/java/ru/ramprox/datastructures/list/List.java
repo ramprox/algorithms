@@ -1,6 +1,6 @@
 package ru.ramprox.datastructures.list;
 
-public interface List<T> {
+public interface List<T> extends Iterable<T> {
 
     void addFirst(T item);
 
