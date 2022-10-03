@@ -146,10 +146,36 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public boolean isBalanced() {
-        // TODO: 29.09.2022 Проверить, является ли дерево сбалансированным.
-        // Дерево является сбалансированным, если глубины от любого узла до любых двух листьев
-        // отличаются не более, чем на 1
-        return false;
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node node) {
+        if(node == null) {
+            return true;
+        }
+        int leftMaxHeight = maxHeight(node.left);
+        int rightHeight = maxHeight(node.right);
+        int diff = Math.abs(leftMaxHeight - rightHeight);
+        if(diff > 1) {
+            return false;
+        }
+        boolean isBalancedLeft = isBalanced(node.left);
+        if(!isBalancedLeft) {
+            return false;
+        }
+        return isBalanced(node.right);
+    }
+
+    private int maxHeight(Node node) {
+        if(node == null) {
+            return 0;
+        }
+        if(node.left == null && node.right == null) {
+            return 1;
+        }
+        int leftMaxHeight = maxHeight(node.left) + 1;
+        int rightMaxHeight = maxHeight(node.right) + 1;
+        return Math.max(leftMaxHeight, rightMaxHeight);
     }
 
 }
