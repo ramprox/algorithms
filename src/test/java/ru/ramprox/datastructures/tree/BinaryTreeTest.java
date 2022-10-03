@@ -1,10 +1,17 @@
 package ru.ramprox.datastructures.tree;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayDeque;
+import java.util.List;
 import java.util.Queue;
+import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinaryTreeTest {
@@ -119,6 +126,25 @@ public class BinaryTreeTest {
         assertEquals(7, queue.poll());
         assertEquals(13, queue.poll());
         assertNull(queue.poll());
+    }
+
+    @DisplayName("Проверка сбалансировано ли дерево")
+    @ParameterizedTest
+    @MethodSource("isBalancedArgs")
+    public void isBalancedTest(List<Integer> items, boolean expectedResult) {
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        items.forEach(tree::add);
+        assertThat(tree.isBalanced()).isEqualTo(expectedResult);
+    }
+
+    private static Stream<Arguments> isBalancedArgs() {
+        return Stream.of(
+                Arguments.of(List.of(8, 3, 1, 6, 4, 7, 10, 14, 13), false),
+                Arguments.of(List.of(8, 3, 1, 6, 4, 7, 10, 14, 13, 9), true),
+                Arguments.of(List.of(8, 3, 1, 6, 4, 7, 10, 14, 13, 9, 15, 16), false),
+                Arguments.of(List.of(8, 3, 1, 6, 4, 7, 10, 14, 13), false),
+                Arguments.of(List.of(8, 3, 1, 6, 4, 7, 10, 11, 9), true)
+        );
     }
 
 }
