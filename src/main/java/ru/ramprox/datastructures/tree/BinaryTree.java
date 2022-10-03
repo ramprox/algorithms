@@ -146,10 +146,6 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public boolean isBalanced() {
-        // TODO: 29.09.2022 Проверить, является ли дерево сбалансированным.
-        // Дерево является сбалансированным, если глубины от любого узла до любых двух листьев
-        // отличаются не более, чем на 1
-
         return isBalanced(root);
     }
 
