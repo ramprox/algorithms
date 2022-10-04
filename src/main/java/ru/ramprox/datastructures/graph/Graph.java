@@ -6,11 +6,7 @@ public interface Graph {
 
     boolean addVertex(String label);
 
-    // FIXME: 03.10.2022 Добавить возможность указывать вес ребра.
-    //  Вес должен попадать в матрицу смежности.
-    boolean addEdge(String from, String to);
-
-    // FIXME: 03.10.2022 * Реализовать поиск кратчайшего расстояния между двумя узлами.
+    boolean addEdge(String from, String to, int weight);
 
     /**
      * depth-first search
