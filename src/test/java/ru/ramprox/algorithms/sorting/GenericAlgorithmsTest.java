@@ -22,6 +22,7 @@ public class GenericAlgorithmsTest {
         Comparator<Notebook> comparator = NotebookComparator.defaultComparator();
 
         List<SortAlgorithm<Notebook>> sortAlgorithms = List.of(
+                create(GenericAlgorithms::bubbleSort, "Пузырьковая сортировка"),
                 create(GenericAlgorithms::insertionSort, "Сортировка методом вставки"),
                 create(GenericAlgorithms::selectionSort, "Сортировка методом выбора"),
                 create(Arrays::sort, "Стандартная Java сортировка")
